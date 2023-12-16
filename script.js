@@ -2,26 +2,33 @@
 const BOTON = document.getElementById('boton');
 const INBOTON = document.getElementById('inicioBoton');
 const TEXT = document.getElementById('Contador');
+const MSG = document.getElementById('msgFinal')
 window.addEventListener('DOMContentLoaded', () => {
     uiAct();
 })
 INBOTON.addEventListener('click', () => {
     inicioRacha();
     uiAct();
+    MSG.style.display='none'
 })
 
 BOTON.addEventListener('click', () => {
 
     uiAct();
     if (compareUwI()) {
-        if (checkRacha) {
-            console.log('paso un dia')
+        
+        if (checkRacha()) {
+            console.log('paso un dia');
             sumarRacha();
             ultimaRacha();
             uiAct();
+            MSG.innerHTML="Tienes un día mas!"
         } 
         else{
-            console.log('paso mas de un dia')
+            console.log('paso mas de un dia');
+            inicioRacha();
+            uiAct();
+            MSG.innerHTML="Perdiste la racha :("
         }
     }
 })
@@ -36,7 +43,7 @@ function inicioRacha() {
 
 function checkRacha() {
     let esteDia = fechaActual();
-    let inicio = JSON.parse(localStorage.getItem('inicio'))
+    let inicio = JSON.parse(localStorage.getItem('ultimo'))
     if ((esteDia[0] - inicio.dia) == 1) {
         console.log('true sale de aca')
         return true;
