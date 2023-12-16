@@ -1,8 +1,25 @@
 
+
+// Variables para la racha
 const BOTON = document.getElementById('boton');
 const INBOTON = document.getElementById('inicioBoton');
 const TEXT = document.getElementById('Contador');
-const MSG = document.getElementById('msgFinal')
+const MSG = document.getElementById('msgFinal');
+
+//variables para lista de cosas 
+const INPUTLISTA = document.getElementById('TodoInput');
+const LIST = document.querySelector('ul');
+let itemsLista = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
+const BAGREGAR =document.getElementById('BotonCarga');
+const BELIMINAR =document.getElementById('BotonElimina');
+//Eventos para la lista
+BAGREGAR.addEventListener('click',() =>{
+    newHab();
+})
+BELIMINAR.addEventListener('click',()=>{
+    eliminar();
+})
+//Eventos Para las rachas
 window.addEventListener('DOMContentLoaded', () => {
     uiAct();
 })
@@ -10,6 +27,7 @@ INBOTON.addEventListener('click', () => {
     inicioRacha();
     uiAct();
     MSG.style.display='none'
+    newHab();
 })
 
 BOTON.addEventListener('click', () => {
@@ -32,7 +50,7 @@ BOTON.addEventListener('click', () => {
         }
     }
 })
-
+// Funciones para la racha
 function inicioRacha() {
     const INICIORACHA = fechaActual();
     localStorage.setItem('inicio', JSON.stringify({ dia: INICIORACHA[0], mes: INICIORACHA[1] }));
@@ -50,7 +68,26 @@ function checkRacha() {
     }
     else {
         if (esteDia[1] != inicio.mes) {
-            console.log('true sale de mes')
+            console
+            // Funciones para la lista
+            itemsLista.forEach(agregarHab);
+            function agregarHab(texto){
+                const li = document.createElement('li')
+                li.textContent=texto;
+                LIST.appendChild(li);
+            }
+            function newHab(){
+                itemsLista.push(INPUTLISTA.value);
+                localStorage.setItem('items',JSON.stringify(itemsLista));
+                agregarHab(INPUTLISTA.value);
+                INPUTLISTA.value='';
+            }
+            function eliminar(){
+                localStorage.removeItem('items')
+                INPUTLISTA.innerHTML ='';
+                itemsLista = [];
+                LIST.removeChild(LIST.firstChild);
+            }
             return true;
         }
         else {
@@ -87,3 +124,23 @@ function uiAct() {
 }
 
 
+
+// Funciones para la lista
+itemsLista.forEach(agregarHab);
+function agregarHab(texto){
+    const li = document.createElement('li')
+    li.textContent=texto;
+    LIST.appendChild(li);
+}
+function newHab(){
+    itemsLista.push(INPUTLISTA.value);
+    localStorage.setItem('items',JSON.stringify(itemsLista));
+    agregarHab(INPUTLISTA.value);
+    INPUTLISTA.value='';
+}
+function eliminar(){
+    localStorage.removeItem('items')
+    INPUTLISTA.innerHTML ='';
+    itemsLista = [];
+    LIST.removeChild(LIST.firstChild);
+}
