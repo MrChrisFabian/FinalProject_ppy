@@ -1,3 +1,39 @@
-#msgError{
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap');
+
+body {
+    background: #FFECD6;
+    font-family: 'Poppins', sans-serif;
+    color: #3E363F;
+    text-align: center;
+}
+
+h1{
+    color: #0F2167;
+}
+h2{
+    color: #3559E0;
+}
+#Rachas{
+    position: relative;
+  
+}
+#contenedor{
+    background-color: #4CB9E7;
+    border-radius: 10px;
+    /* centrar vertical y horizontalmente */
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    margin: -10px 0 0 -10px;
+}
+
+#msgError {
     display: none;
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid #f5c6cb;
+    margin-bottom: 10px;
+
 }

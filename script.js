@@ -29,7 +29,7 @@ INBOTON.addEventListener('click', () => {
     inicioRacha();
     uiAct();
     MSG.style.display='none'
-    newHab();
+
 })
 
 BOTON.addEventListener('click', () => {
@@ -65,7 +65,6 @@ function checkRacha() {
     let esteDia = fechaActual();
     let inicio = JSON.parse(localStorage.getItem('ultimo'))
     if ((esteDia[0] - inicio.dia) == 1) {
-        console.log('true sale de aca')
         return true;
     }
     else {
@@ -103,6 +102,7 @@ function compareUwI() {
 function uiAct() {
     let racha = localStorage.getItem('racha')
     TEXT.innerHTML = 'llevas una racha de: ' + racha + ' días';
+    msgERROR.style.display='none'
 }
 
 
@@ -114,6 +114,8 @@ function agregarHab(texto){
         const li = document.createElement('li')
         li.textContent=texto;
         LIST.appendChild(li);
+        msgERROR.style.display='none'
+
     }
     else{
         msgERROR.style.display='block'
