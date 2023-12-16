@@ -101,7 +101,7 @@ function compareUwI() {
 }
 function uiAct() {
     let racha = localStorage.getItem('racha')
-    TEXT.innerHTML = 'llevas una racha de: ' + racha + ' días';
+    TEXT.innerHTML = racha ;
     msgERROR.style.display='none'
 }
 
