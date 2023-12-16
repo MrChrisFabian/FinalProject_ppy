@@ -2,7 +2,6 @@
 const BOTON = document.getElementById('boton');
 const INBOTON = document.getElementById('inicioBoton');
 const TEXT = document.getElementById('msgInicio');
-localStorage.setItem('ultimo',JSON.stringify({dia:0,mes:0}));
 INBOTON.addEventListener('click', () => {
     const INICIORACHA = inicioRacha();
     localStorage.setItem('inicio', JSON.stringify({ dia: INICIORACHA[0], mes: INICIORACHA[1] }));
@@ -14,6 +13,7 @@ BOTON.addEventListener('click', () => {
         if (checkRacha) {
             sumarRacha();
             ultimaRacha();
+            uiAct();
         }
     }
 })
@@ -58,5 +58,9 @@ function compareUwI(){
     let ultDia = JSON.parse(localStorage.getItem('ultimo'));
     let actualF = fechaActual();
     return(ultDia.dia != actualF[0]);
+}
+function uiAct(){
+    let racha = localStorage.getItem('racha')
+    TEXT.innerHTML='llevas una racha de: '+ racha;
 }
 
