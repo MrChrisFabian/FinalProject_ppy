@@ -15,6 +15,7 @@ h2{
     color: #3559E0;
 }
 button{
+    
     font-size: medium;
     border-radius: 10px;
     background-color: #FFECD6;
@@ -35,17 +36,19 @@ ul{
     font-size: xx-large;
 }
 #Rachas{
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   
 }
 #contenedor{
     background-color: #4CB9E7;
     border-radius: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
     /* centrar vertical y horizontalmente */
-    position: absolute;
-    top: 50%;
-    left: 25%;
-    margin: -10px 0 0 -10px;
+   
 }
 
 #msgError {
@@ -57,4 +60,11 @@ ul{
     border: 1px solid #f5c6cb;
     margin-bottom: 10px;
 
+}
+
+#elementLista{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
