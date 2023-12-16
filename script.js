@@ -101,7 +101,7 @@ function compareUwI() {
 }
 function uiAct() {
     let racha = localStorage.getItem('racha')
-    TEXT.innerHTML = racha ;
+    TEXT.innerHTML =racha ;
     msgERROR.style.display='none'
 }
 
@@ -112,7 +112,7 @@ itemsLista.forEach(agregarHab);
 function agregarHab(texto){
     if(texto!=''){
         const li = document.createElement('li')
-        li.textContent=texto;
+        li.textContent='✦ '+texto;
         LIST.appendChild(li);
         msgERROR.style.display='none'
 
