@@ -12,10 +12,11 @@ const LIST = document.querySelector('ul');
 let itemsLista = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
 const BAGREGAR =document.getElementById('BotonCarga');
 const BELIMINAR =document.getElementById('BotonElimina');
+const msgERROR = document.getElementById('msgError');
 //Eventos para la lista
 BAGREGAR.addEventListener('click',() =>{
     newHab();
-    
+
 })
 BELIMINAR.addEventListener('click',()=>{
     eliminar();
@@ -69,26 +70,6 @@ function checkRacha() {
     }
     else {
         if (esteDia[1] != inicio.mes) {
-            console
-            // Funciones para la lista
-            itemsLista.forEach(agregarHab);
-            function agregarHab(texto){
-                const li = document.createElement('li')
-                li.textContent=texto;
-                LIST.appendChild(li);
-            }
-            function newHab(){
-                itemsLista.push(INPUTLISTA.value);
-                localStorage.setItem('items',JSON.stringify(itemsLista));
-                agregarHab(INPUTLISTA.value);
-                INPUTLISTA.value='';
-            }
-            function eliminar(){
-                localStorage.removeItem('items')
-                INPUTLISTA.innerHTML ='';
-                itemsLista = [];
-                LIST.removeChild(LIST.firstChild);
-            }
             return true;
         }
         else {
@@ -129,9 +110,14 @@ function uiAct() {
 // Funciones para la lista
 itemsLista.forEach(agregarHab);
 function agregarHab(texto){
-    const li = document.createElement('li')
-    li.textContent=texto;
-    LIST.appendChild(li);
+    if(texto!=''){
+        const li = document.createElement('li')
+        li.textContent=texto;
+        LIST.appendChild(li);
+    }
+    else{
+        msgERROR.style.display='block'
+    }
 }
 function newHab(){
     itemsLista.push(INPUTLISTA.value);
