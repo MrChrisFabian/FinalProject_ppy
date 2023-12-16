@@ -15,6 +15,7 @@ const BELIMINAR =document.getElementById('BotonElimina');
 //Eventos para la lista
 BAGREGAR.addEventListener('click',() =>{
     newHab();
+    
 })
 BELIMINAR.addEventListener('click',()=>{
     eliminar();
