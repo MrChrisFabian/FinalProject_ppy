@@ -28,7 +28,7 @@ window.addEventListener('DOMContentLoaded', () => {
 INBOTON.addEventListener('click', () => {
     inicioRacha();
     uiAct();
-    MSG.style.display='none'
+    
 
 })
 
