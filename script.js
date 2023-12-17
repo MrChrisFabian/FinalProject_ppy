@@ -1,26 +1,37 @@
 
 const BOTON = document.getElementById('boton');
 const INBOTON = document.getElementById('inicioBoton');
-const TEXT = document.getElementById('msgInicio');
+const TEXT = document.getElementById('Contador');
+window.addEventListener('DOMContentLoaded', () => {
+    uiAct();
+})
 INBOTON.addEventListener('click', () => {
-    const INICIORACHA = inicioRacha();
-    localStorage.setItem('inicio', JSON.stringify({ dia: INICIORACHA[0], mes: INICIORACHA[1] }));
-    localStorage.setItem('racha', 0);
+    inicioRacha();
+    uiAct();
 })
 
 BOTON.addEventListener('click', () => {
-    if(compareUwI()){
+
+    uiAct();
+    if (compareUwI()) {
         if (checkRacha) {
+            console.log('paso un dia')
             sumarRacha();
             ultimaRacha();
             uiAct();
+        } 
+        else{
+            console.log('paso mas de un dia')
         }
     }
 })
 
 function inicioRacha() {
     const INICIORACHA = fechaActual();
-    return INICIORACHA;
+    localStorage.setItem('inicio', JSON.stringify({ dia: INICIORACHA[0], mes: INICIORACHA[1] }));
+    localStorage.setItem('racha', 0);
+    localStorage.setItem('ultimo',JSON.stringify({ dia: INICIORACHA[0], mes: INICIORACHA[1] }))
+
 }
 
 function checkRacha() {
@@ -36,6 +47,7 @@ function checkRacha() {
             return true;
         }
         else {
+            console.log('pq')
             return false;
         }
     }
@@ -50,17 +62,21 @@ function sumarRacha() {
     let rachaActualizada = rachaActual + 1;
     localStorage.setItem('racha', rachaActualizada);
 }
-function ultimaRacha(){
-    let ultimoDia = fechaActual();
-    localStorage.setItem('ultimo', JSON.stringify({ dia: ultimoDia[0], mes: ultimoDia[1] }));    
+function reiniciaRacha() {
+    localStorage.setItem('racha', 0);
 }
-function compareUwI(){
+function ultimaRacha() {
+    let ultimoDia = fechaActual();
+    localStorage.setItem('ultimo', JSON.stringify({ dia: ultimoDia[0], mes: ultimoDia[1] }));
+}
+function compareUwI() {
     let ultDia = JSON.parse(localStorage.getItem('ultimo'));
     let actualF = fechaActual();
-    return(ultDia.dia != actualF[0]);
+    return (ultDia.dia != actualF[0]);
 }
-function uiAct(){
+function uiAct() {
     let racha = localStorage.getItem('racha')
-    TEXT.innerHTML='llevas una racha de: '+ racha;
+    TEXT.innerHTML = 'llevas una racha de: ' + racha + ' días';
 }
+
 
