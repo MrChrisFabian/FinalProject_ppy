@@ -60,6 +60,7 @@ function inicioRacha() {
     localStorage.setItem('ultimo',JSON.stringify({ dia: INICIORACHA[0], mes: INICIORACHA[1] }))
 
 }
+// Función qeu controla que la racha se mantenga diariamente
 
 function checkRacha() {
     let esteDia = fechaActual();
@@ -77,28 +78,34 @@ function checkRacha() {
         }
     }
 }
+// función que devuelve la fecha actual como un array donde solo se muestra la fecha y el mes
 function fechaActual() {
     let fechaDeHoy = new Date();
     const INICIORACHA = [fechaDeHoy.getDate(), fechaDeHoy.getMonth() + 1];
     return INICIORACHA;
 }
+//función qeu suma la racha y guarda en el local storage
 function sumarRacha() {
     let rachaActual = parseInt(localStorage.getItem('racha')) || 0;
     let rachaActualizada = rachaActual + 1;
     localStorage.setItem('racha', rachaActualizada);
 }
+// FUnción qeu reinicia la racha en el localstorage
 function reiniciaRacha() {
     localStorage.setItem('racha', 0);
 }
+// función qeu establece la racha la ult vez y la guarda
 function ultimaRacha() {
     let ultimoDia = fechaActual();
     localStorage.setItem('ultimo', JSON.stringify({ dia: ultimoDia[0], mes: ultimoDia[1] }));
 }
+// Función qeu compara el ultimo dia con el actual
 function compareUwI() {
     let ultDia = JSON.parse(localStorage.getItem('ultimo'));
     let actualF = fechaActual();
     return (ultDia.dia != actualF[0]);
 }
+// Función que actualiza la interfaz
 function uiAct() {
     let racha = localStorage.getItem('racha')
     TEXT.innerHTML =racha ;
@@ -109,6 +116,7 @@ function uiAct() {
 
 // Funciones para la lista
 itemsLista.forEach(agregarHab);
+//Función que crea elementos en el div de la lista
 function agregarHab(texto){
     if(texto!=''){
         const li = document.createElement('li')
@@ -121,12 +129,14 @@ function agregarHab(texto){
         msgERROR.style.display='block'
     }
 }
+// FUncion que crea elementos en el local storage 'items'
 function newHab(){
     itemsLista.push(INPUTLISTA.value);
     localStorage.setItem('items',JSON.stringify(itemsLista));
     agregarHab(INPUTLISTA.value);
     INPUTLISTA.value='';
 }
+//Función que se encarga de eliminar el primer en la lista de habitos nuevos
 function eliminar(){
     localStorage.removeItem('items')
     INPUTLISTA.innerHTML ='';
