@@ -56,7 +56,7 @@ BOTON.addEventListener('click', () => {
 function inicioRacha() {
     const INICIORACHA = fechaActual();
     localStorage.setItem('inicio', JSON.stringify({ dia: INICIORACHA[0], mes: INICIORACHA[1] }));
-    localStorage.setItem('racha', 0);
+    localStorage.setItem('racha', 1);
     localStorage.setItem('ultimo',JSON.stringify({ dia: INICIORACHA[0], mes: INICIORACHA[1] }))
 
 }
